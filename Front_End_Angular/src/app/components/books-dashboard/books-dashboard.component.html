@@ -1,0 +1,108 @@
+<!--<mat-nav-list>
+  <a mat-list-item routerLink="/bookDetails/{{book.id}}" *ngFor="let book of books"> {{ book.name }} </a>
+</mat-nav-list>-->
+<!--<div class = "col-md-12" style="background-image: url('https://www.hbo.com/content/dam/hbodata/series/game-of-thrones/series_logos_game-of-thrones.jpg/_jcr_content/renditions/original'); opacity: 0.6;background-repeat: no-repeat ;background-position: center;background-size: contain"></div>-->
+<div class="row">
+  <div class="col-md-8">
+    <div class="col-md-12" style="padding-left:30px;padding-top: 30px;padding-bottom:30px">
+      <h4 class="text-center my-13"
+        style=" padding: 5px;background-color:white ;color:#1c2331;padding-right: 30px; border-radius: 12px 12px 12px 12px;">
+        Book List
+        <i class="fas fa-th-list"></i>
+      </h4>
+      <table id="tableSortExample" mdbTable class="z-depth-1" hover="true">
+        <thead>
+          <tr style="background-color:#1C2331;color:white;font-weight: bold">
+            <th class="text-center" [mdbTableSort]="books" sortBy="id">
+              Id
+              <mdb-icon fas icon="sort"></mdb-icon>
+            </th>
+            <th class="text-center" [mdbTableSort]="books" sortBy="name">
+              Name
+              <mdb-icon fas icon="sort"></mdb-icon>
+            </th>
+
+            <th class="text-center" [mdbTableSort]="books" sortBy="numberOfPages">
+              No.of pages
+              <mdb-icon fas icon="sort"></mdb-icon>
+            </th>
+
+            <th class="text-center" [mdbTableSort]="books" sortBy="characters.length">
+              No. of Characters
+              <mdb-icon fas icon="sort"></mdb-icon>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let book of books; let i = index">
+            <th scope="row" style="color:black;font-weight: 900">
+              {{ book.id }}
+            </th>
+            <td class="text-center" routerLink="/bookDetails/{{ book.id }}" style="color:black;font-weight: 900">
+              {{ book.name }}
+            </td>
+            <td class="text-center" routerLink="/bookDetails/{{ book.id }}" style="color: black;font-weight: 900;">
+              {{ book.numberOfPages }}
+            </td>
+            <td class="text-center" routerLink="/bookDetails/{{ book.id }}" style="color:black ;font-weight: 900;">
+              {{ book.characters.length }}
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="col-md-2">
+    <div style="margin-left:40px;margin-top :200px;">
+      <div class=" btn align-middle btn-block btn-outline-dark" (click)="scroll(cardview)"
+        style="padding:10px;cursor: pointer;border-radius: 12px 12px 12px 12px;">
+        Card Layout
+        <i style="padding-left:5px;padding:5px" class="fas fa-angle-double-down"></i>
+      </div>
+    </div>
+  </div>
+</div>
+<div #cardview style="padding:20px">
+  <h2 class="font-weight-bolder z-depth-1-half text-center my-13"
+    style=" padding: 10px;color:white ;background-color:#1c2331;padding-right: 30px; border-radius: 12px 12px 12px 12px;">
+    Top Sellers
+  </h2>
+</div>
+<div class="row card-deck" style="margin-left: 20px;margin-right: 20px">
+  <div class="col-md-3 d-flex align-items-stretch " style="padding: 10px;" *ngFor="let book_item of books">
+    <div class="card z-depth-1">
+      <!-- Card image -->
+      <div class="view">
+        <img class="card-img-top overflow-hidden" [src]="book_item.imageUrl" alt="Card image cap" width="350"
+          height="350" />
+      </div>
+      <div class="card-body text-center">
+        <h4 class="card-title font-weight-bolder  justify-content-between align-items-center ">
+          <a>
+            <strong>{{ book_item.name }}</strong>
+          </a>
+        </h4>
+        <ul class="list-group " style="border: 0 none">
+          <li class="list-group-item  rounded d-flex justify-content-between align-items-center" style="border: 0 none">
+            No.of Pages :
+            <span class="badge badge-dark badge-pill">
+              {{ book_item.numberOfPages }}
+            </span>
+          </li>
+          <li class="list-group-item  d-flex justify-content-between align-items-center" style="border: 0 none">
+            No.of Characters :
+            <span class="badge badge-dark badge-pill">
+              {{ book_item.characters.length }}
+            </span>
+          </li>
+        </ul>
+      </div>
+      <div class="card-footer font-weight-bolder bg-dark text-center">
+        <a class="stretched-link " href="#" routerLink="/bookDetails/{{ book_item.id }}"
+          style="padding: 5px; color:white">
+          View Details
+        </a>
+      </div>
+    </div>
+  </div>
+</div>

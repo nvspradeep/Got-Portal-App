@@ -1,0 +1,13 @@
+{
+  "/api/reviews": {
+    "target": "http://localhost:8090",
+    "secure": false,
+    "changeOrigin": true
+  },
+
+  "/api/books": {
+    "target": "https://anapioficeandfire.com",
+    "secure": true,
+    "changeOrigin": true
+  }
+}

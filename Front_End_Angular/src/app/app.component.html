@@ -1,0 +1,38 @@
+<mdb-navbar
+  SideClass="navbar z-depth-1 navbar-expand-lg bg-white"
+  [containerInside]="false"
+>
+  <mdb-navbar-brand>
+    <a
+      class="  navbar-brand font-weight-bold"
+      style="color:#1C2331;padding-left:20px"
+      routerLink="/dashboard"
+    >
+      Game of Thrones Portal
+    </a>
+  </mdb-navbar-brand>
+  <links>
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item active">
+        <a
+          class="waves-light"
+          style="color: #1C2331"
+          routerLink="/dashboard"
+          mdbWavesEffect
+          style="padding-right: 100px"
+        >
+          <mdb-icon
+            fas
+            icon="home"
+            style="color: #1C2331;padding: 2px"
+          ></mdb-icon>
+          <span style="padding: 5px; font-weight: 600;color: #1C2331">
+            Home
+          </span>
+        </a>
+      </li>
+    </ul>
+  </links>
+</mdb-navbar>
+
+<router-outlet></router-outlet>

@@ -1,0 +1,135 @@
+<section class="my-md-3">
+  <h2
+    class="font-weight-bolder z-depth-1-half  float-left my-13"
+    style="padding: 10px;color:white ;background-color:#1c2331; border-radius: 0px 12px 12px 0px;"
+  >
+    Book Details
+    <i class="fas fa-book-open"></i>
+  </h2>
+
+  <div class="row">
+    <div class="col-lg-3">
+      <div
+        class="view  z-depth-0 mb-lg-4 mb-2 waves-light"
+        style="align-content: center"
+        mdbWavesEffect
+      >
+        <div
+          *ngIf="showLoadingIndicator"
+          class="spinner-border text-success"
+          role="status"
+        >
+          <span class="sr-only">Loading...</span>
+        </div>
+        <img
+          style="padding-left: 30px;padding-top: 10px;align-content: center;overflow: hidden;"
+          widht="300"
+          height="350"
+          [src]="imageSource"
+          (load)="disableLoadingIndicator()"
+          alt="Sample image"
+        />
+      </div>
+    </div>
+    <div class="col-md-4">
+      <h3
+        class="font-weight-bolder title mb-2"
+        style="padding-top: 10px;padding-bottom: 5px"
+      >
+        <strong>{{ book.name }}</strong>
+      </h3>
+      <div style="overflow: hidden; padding: 0.5px">
+        <p style="float: left;font-weight:450; padding:  0.5px">Publisher :</p>
+        <p style="float: left;padding: 0.5px">{{ book.publisher }}</p>
+      </div>
+      <div style="overflow: hidden; padding: 0.5px">
+        <p style="float: left;font-weight:450; padding:  0.5px">Country :</p>
+        <p style="float: left;padding: 0.5px">{{ book.country }}</p>
+      </div>
+      <div style="overflow: hidden; padding: 0.5px">
+        <p style="float: left;font-weight:450; padding:  0.5px">Media Type :</p>
+        <p style="float: left;padding: 0.5px">{{ book.mediaType }}</p>
+      </div>
+      <div style="overflow: hidden; padding: 0.5px">
+        <p style="float: left;font-weight:450; padding: 0.5px">Released :</p>
+        <p style="float: left;padding: 0.5px">{{ book.released }}</p>
+      </div>
+      <div style="overflow: hidden; padding: 0.5px">
+        <p style="float: left;font-weight:450; padding: 0.5px">
+          Total Characters :
+        </p>
+        <p style="float: left;padding: 0.5px">{{ book.characters.length }}</p>
+      </div>
+      <div style="overflow: hidden; padding: 0.5px">
+        <p style="float: left;font-weight:450; padding: 0.5px">No of Pages :</p>
+        <p style="float: left;padding: 0.5px">{{ book.numberOfPages }}</p>
+      </div>
+      <div style="padding-left:10px;padding-top: 5px">
+        <div
+          class="btn btn-outline-dark "
+          style="padding:5dpx;font-weight: bolder; "
+          (click)="isReviewEnabled = true"
+        >
+          &nbsp;&nbsp; Add Review &nbsp;&nbsp;
+          <i class="fas fa-pen"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div
+    class="col-lg-6"
+    style="padding-left: 40px;padding-top: 30px"
+    *ngIf="isReviewEnabled"
+    id="ReviewDiv"
+    [@fadeInOut]
+  >
+    <form #myForm="ngForm" (ngSubmit)="submitForm(myForm)">
+      <div class="form-group shadow-textarea">
+        <textarea
+          class="form-control z-depth-1"
+          name="comment_box"
+          required
+          [(ngModel)]="new_comment"
+          id="exampleFormControlTextarea6"
+          rows="3"
+          placeholder="Please leave your review..."
+        ></textarea>
+      </div>
+      <div class="row d-flex align-items-center">
+        <div class="text-center col-lg-6">
+          <button
+            mdbBtn
+            mdbWavesEffect
+            style="padding: 15px;background-color:#1C2331;color:#e3f2fd"
+            type="submit"
+            class="btn btn-block btn-rounded z-depth-1"
+          >
+            post review
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div
+    class="col-md-6"
+    style="padding:20px 20px 20px 20px"
+    *ngIf="reviews.length > 0"
+  >
+    <div class="col-md-4 ">
+      <h4
+        class="mb-3 z-depth-1 text-center"
+        style="padding: 12px;font-weight: lighter;background-color:#1C2331;color:white;border-radius: 8px"
+      >
+        <strong>Reviews</strong>
+      </h4>
+    </div>
+    <div style="padding: 2px" *ngFor="let review of reviews.slice().reverse()">
+      <div class="card z-depth-1" style="padding: 1px">
+        <div class="card-body float-left">
+          <i style="padding-right: 10px" class="fas fa-comments"></i>
+          {{ review }}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
